@@ -52,7 +52,7 @@ function compile() {
         // var wrapper = '(function(){%output%})();';
 
         var srcs = [
-            'closure/**/*.js',
+            'src/**/*.js',
             '!**_test.js',
             '!**/test-*.js'
         ];
@@ -78,7 +78,7 @@ function compile() {
                         dependency_mode: 'STRICT',
                         process_common_js_modules: true,
                         formatting: ['PRETTY_PRINT'/*, 'PRINT_INPUT_DELIMITER'*/],
-                        js_module_root: '/closure',
+                        js_module_root: '/src',
                         jscomp_error: '*',
                         jscomp_warning: ['lintChecks'],
                         jscomp_off: ['extraRequire', 'inferredConstCheck'],
@@ -122,8 +122,8 @@ gulp.task('compile', function() {
 });
 
 gulp.task('watch', function() {
-    return gulp.src(['closure/**/*.js']).
-                pipe(watch('closure/**/*.js')).
+    return gulp.src(['src/**/*.js']).
+                pipe(watch('src/**/*.js')).
                 pipe(sourcemaps.init()).
                 pipe(babel({
                     presets: ['es2015'], resolveModuleSource: (src, fn) => `./${src}`
